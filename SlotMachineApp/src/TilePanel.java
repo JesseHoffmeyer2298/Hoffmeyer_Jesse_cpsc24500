@@ -100,29 +100,31 @@ class TilePanel extends JPanel implements MouseListener, MouseMotionListener  {
 	// creates new tile and replaces on screen tile based on mouse click position  
 	@Override
 	public void mouseClicked(MouseEvent e) { 
-		int cord = e.getX(); 
+		int cordX = e.getX(); 
+		int cordY = e.getY(); 
 		Tile tiley = new Tile(e.getX(),e.getY());
-		if (cord <= 120) {
+		if (cordY >= 50 & cordY <= 150) {
+		if (cordX <= 120) {
 			tiles.remove(0);
 			tiles.add(0,tiley);
 			repaint();
 		}
-		else if (cord <= 240 & cord > 121) {
+		else if (cordX <= 240 & cordX > 121) {
 			tiles.remove(1);
 			tiles.add(1,tiley);
 			repaint();
 		}
-		else if (cord <= 360 & cord > 241) {
+		else if (cordX <= 360 & cordX > 241) {
 			tiles.remove(2);
 			tiles.add(2,tiley);
 			repaint();
 		}
-		else if (cord <= 480 & cord > 361) {
+		else if (cordX <= 480 & cordX > 361) {
 			tiles.remove(3);
 			tiles.add(3,tiley);
 			repaint();
 		}
-		
+		}
 	}
 	@Override
 	public void mouseEntered(MouseEvent e) {	
