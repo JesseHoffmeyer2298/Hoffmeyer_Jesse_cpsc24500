@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.JPanel;
 /* 
@@ -13,8 +14,8 @@ class TilePanel extends JPanel implements MouseListener, MouseMotionListener  {
 	private ArrayList<Tile> tiles;
 	private int tileLeft; 
 	private int tileTop;
+	private Random rng; 
 	private int count;
-	
 	public ArrayList<Tile> getTiles() { // getter for tiles
 		return tiles; 
 	}
@@ -38,11 +39,14 @@ class TilePanel extends JPanel implements MouseListener, MouseMotionListener  {
 	}
 	
 	public TilePanel() { // constructor for TilePanel 
-		tiles = new ArrayList<Tile>(); 
-		tiles.add(new Tile());
-		tiles.add(new Tile());
-		tiles.add(new Tile());
-		tiles.add(new Tile());
+		tiles = new ArrayList<Tile>();
+		Tile tile; 
+		rng = new Random(); 
+		for (int i = 0; i < 4; i ++) {
+			tile = new Tile();
+			tile.setRandom(rng);
+			tiles.add(tile); 
+		}
 		tileLeft = 20; 
 		tileTop = 50; 
 		this.addMouseListener(this);
@@ -102,26 +106,26 @@ class TilePanel extends JPanel implements MouseListener, MouseMotionListener  {
 	public void mouseClicked(MouseEvent e) { 
 		int cordX = e.getX(); 
 		int cordY = e.getY(); 
-		Tile tiley = new Tile(e.getX(),e.getY());
+		Tile tile = new Tile(e.getX(),e.getY());
 		if (cordY >= 50 & cordY <= 150) {
 		if (cordX <= 120) {
 			tiles.remove(0);
-			tiles.add(0,tiley);
+			tiles.add(0,tile);
 			repaint();
 		}
 		else if (cordX <= 240 & cordX > 121) {
 			tiles.remove(1);
-			tiles.add(1,tiley);
+			tiles.add(1,tile);
 			repaint();
 		}
 		else if (cordX <= 360 & cordX > 241) {
 			tiles.remove(2);
-			tiles.add(2,tiley);
+			tiles.add(2,tile);
 			repaint();
 		}
 		else if (cordX <= 480 & cordX > 361) {
 			tiles.remove(3);
-			tiles.add(3,tiley);
+			tiles.add(3,tile);
 			repaint();
 		}
 		}

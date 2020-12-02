@@ -8,15 +8,10 @@ import java.util.Random;
 public class Tile implements Serializable {
 	private int color; 
 	private int shape;  
-	public int setRandomColor() { // creates random values between 0-4 for Tile color
-		Random rng = new Random(); 
-		color = rng.nextInt(5) ; 
-		return color;
-	}
-	public int setRandomShape() { // creates random value between 0-1 for Tile shape 
-		Random rng = new Random();
+	
+	public void setRandom(Random rng) { // creates random values between 0-4 for Tile color
+		color = rng.nextInt(5);
 		shape = rng.nextInt(2); 
-		return shape; 
 	}
 	public int getTileColor() { // getter for TileColor
 		return color;
@@ -31,12 +26,12 @@ public class Tile implements Serializable {
 		this.shape = shape;
 	}
 	public Tile() { //default constructor for Tile 
-		color = setRandomColor(); 
-		shape = setRandomShape(); 
+		color = 0; 
+		shape = 0; 
 	}
 	public Tile(int color, int shape) { // Tile constructor that sets random values
-		setTileColor(setRandomColor());
-		setTileShape(setRandomShape());
+		setTileColor(color);
+		setTileShape(shape);
 	}
 	@Override
 	public String toString() { // Converts Tile to String for saving to files 
